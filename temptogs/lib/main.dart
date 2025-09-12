@@ -25,7 +25,7 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
   String _city = "Peddāpuram"; 
 
   
-  final String _apiKey = "9904df81bf81fa460059a801ff1bc4b2";
+   String _apiKey = "9904df81bf81fa460059a801ff1bc4b2";
 
   @override
   void initState() {
