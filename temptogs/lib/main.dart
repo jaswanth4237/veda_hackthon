@@ -14,13 +14,13 @@ class MyWeatherDressApp extends StatefulWidget {
 
 class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
   bool _isDarkMode = false;
-  String _gender = "male"; // "male" or "female"
+  String _gender = "male"; 
   double _temperature = 0.0;
   String _weatherCondition = "";
   bool _loading = true;
-  String _city = "Peddāpuram"; // default city
+  String _city = "Peddāpuram"; 
 
-  // Replace with your OpenWeatherMap API key
+  
   final String _apiKey = "9904df81bf81fa460059a801ff1bc4b2";
 
   @override
