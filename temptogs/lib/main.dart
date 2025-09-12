@@ -18,7 +18,7 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
   double _temperature = 0.0;
   String _weatherCondition = "";
   bool _loading = true;
-  String _city = "Peddāpuram"; 
+  String _city = "Peddapuram"; 
 
   
   final String _apiKey = "9904df81bf81fa460059a801ff1bc4b2";
