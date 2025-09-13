@@ -6,7 +6,7 @@ import 'package:device_preview/device_preview.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
-  runApp( DevicePreview(builder: (_)=>MyWeatherDressApp()));
+  runApp(DevicePreview(builder: (_) => MyWeatherDressApp()));
 }
 
 class MyWeatherDressApp extends StatefulWidget {
@@ -22,10 +22,9 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
   double _temperature = 0.0;
   String _weatherCondition = "";
   bool _loading = true;
-  String _city = "Peddāpuram"; 
+  final String _city = "Peddāpuram";
 
-  
-   String _apiKey = "9904df81bf81fa460059a801ff1bc4b2";
+  String _apiKey = "9904df81bf81fa460059a801ff1bc4b2";
 
   @override
   void initState() {
@@ -164,12 +163,13 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Weather Dress Suggestion',
       themeMode: _isDarkMode ? ThemeMode.dark : ThemeMode.light,
       theme: ThemeData(
         brightness: Brightness.light,
         primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.grey[100],
+        scaffoldBackgroundColor: Colors.white,
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
@@ -178,26 +178,57 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("Weather & Outfit"),
+          leading: Padding(
+            padding: const EdgeInsets.only(left:12),
+            child: Container(
+              height: 80, // Increased size
+              width: 100,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.blue, width: 1), // Blue border
+                borderRadius: BorderRadius.circular(50), // Rounded border
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: Image.asset(
+                  "assets/temptogs_logo.png",
+                  fit:
+                      BoxFit
+                          .cover, // Ensures the image fills the container nicely
+                ),
+              ),
+            ),
+          ),
+
+          title:  Padding(
+            padding: const EdgeInsets.only(left: 4),
+            child: Text("TempTogs", style: TextStyle(color: Colors.blue,fontWeight: FontWeight.bold,)),
+          ),
           actions: [
-            Icon(_isDarkMode ? Icons.dark_mode : Icons.light_mode),
-            Switch(
-              value: _isDarkMode,
-              onChanged: (val) => setState(() => _isDarkMode = val),
+            IconButton(
+              icon: Icon(_isDarkMode ? Icons.dark_mode : Icons.light_mode),
+              onPressed: () {
+                setState(() {
+                  _isDarkMode = !_isDarkMode;
+                });
+              },
             ),
           ],
         ),
-        body: _loading
-            ? const Center(child: CircularProgressIndicator())
-            : Column(
-                children: [
-                  _buildWeatherHeader(),
-                  const SizedBox(height: 20),
-                  _buildGenderToggle(),
-                  const SizedBox(height: 20),
-                  _buildOutfitSection(),
-                ],
-              ),
+        body:
+            _loading
+                ? const Center(child: CircularProgressIndicator())
+                : Padding(
+                  padding: const EdgeInsets.only(top:4.0),
+                  child: Column(
+                    children: [
+                      _buildWeatherHeader(),
+                      const SizedBox(height: 20),
+                      _buildGenderToggle(),
+                      const SizedBox(height: 20),
+                      _buildOutfitSection(),
+                    ],
+                  ),
+                ),
       ),
     );
   }
@@ -205,12 +236,13 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
   Widget _buildWeatherHeader() {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.only(top: kToolbarHeight + 20, bottom: 30),
+      padding: EdgeInsets.only(top:80, bottom: 30),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: _isDarkMode
-              ? [Colors.blueGrey.shade900, Colors.grey.shade800]
-              : [Colors.blue.shade300, Colors.lightBlue.shade100],
+          colors:
+              _isDarkMode
+                  ? [Colors.blueGrey.shade900, Colors.grey.shade800]
+                  : [Colors.blue.shade300, Colors.lightBlue.shade100],
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
         ),
@@ -264,7 +296,11 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
   }
 
   Widget _genderButton(
-      String label, String gender, Color lightColor, Color darkColor) {
+    String label,
+    String gender,
+    Color lightColor,
+    Color darkColor,
+  ) {
     final isSelected = _gender == gender;
     return Expanded(
       child: GestureDetector(
@@ -272,21 +308,24 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 12),
           decoration: BoxDecoration(
-            color: isSelected
-                ? (_isDarkMode ? darkColor : lightColor)
-                : Colors.transparent,
-            borderRadius: gender == "male"
-                ? const BorderRadius.horizontal(left: Radius.circular(20))
-                : const BorderRadius.horizontal(right: Radius.circular(20)),
+            color:
+                isSelected
+                    ? (_isDarkMode ? darkColor : lightColor)
+                    : Colors.transparent,
+            borderRadius:
+                gender == "male"
+                    ? const BorderRadius.horizontal(left: Radius.circular(20))
+                    : const BorderRadius.horizontal(right: Radius.circular(20)),
             border: Border.all(color: _isDarkMode ? darkColor : lightColor),
           ),
           child: Center(
             child: Text(
               label,
               style: TextStyle(
-                color: isSelected
-                    ? Colors.white
-                    : (_isDarkMode ? Colors.white70 : Colors.black),
+                color:
+                    isSelected
+                        ? Colors.white
+                        : (_isDarkMode ? Colors.white70 : Colors.black),
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
@@ -307,8 +346,9 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
           return Card(
             margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             elevation: 5,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: ListTile(
               contentPadding: const EdgeInsets.all(16),
               title: Text(outfit["title"]!),
