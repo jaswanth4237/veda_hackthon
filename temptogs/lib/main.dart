@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
@@ -6,7 +7,12 @@ import 'package:device_preview/device_preview.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
+  if(kIsWeb){
   runApp(DevicePreview(builder: (_) => MyWeatherDressApp()));
+  }
+  else{
+    runApp(MyWeatherDressApp());
+  }
 }
 
 class MyWeatherDressApp extends StatefulWidget {
@@ -22,8 +28,7 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
   double _temperature = 0.0;
   String _weatherCondition = "";
   bool _loading = true;
-
-  final String _city = "Peddāpuram";
+  final String _city = "Hyderabad";
   late final String _apiKey;
 
   @override
@@ -375,12 +380,12 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
                       Icon(Icons.broken_image, size: 50, color: Colors.grey),
                 ),
               ),
-              SizedBox(height: 8),
+              SizedBox(height: 28),
               Text(
                 outfit["title"] ?? "Unknown",
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
               ),
-              SizedBox(height: 4),
+              SizedBox(height: 10),
               Row(
                 children: [
                   Icon(Icons.cloud, color: Colors.blue),
