@@ -22,9 +22,9 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
   double _temperature = 0.0;
   String _weatherCondition = "";
   bool _loading = true;
-  final String _city = "Peddāpuram";
 
-  String _apiKey = "9904df81bf81fa460059a801ff1bc4b2";
+  final String _city = "Peddāpuram";
+  late final String _apiKey;
 
   @override
   void initState() {
@@ -237,7 +237,7 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
                   const SizedBox(height: 20),
                   _buildGenderToggle(),
                   const SizedBox(height: 20),
-                  Expanded(child: _buildOutfitSection()), // <-- FIXED
+                  Expanded(child: _buildOutfitSection()),
                 ],
               ),
       ),
@@ -346,56 +346,53 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
   // Outfits Grid
   Widget _buildOutfitSection() {
     final outfits = getOutfitSuggestions();
-    return Expanded(
-      child: GridView.builder(
-        shrinkWrap: true,
-        physics: BouncingScrollPhysics(),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 0.5,
-        ),
-        itemCount: outfits.length,
-        itemBuilder: (context, index) {
-          final outfit = outfits[index];
-          return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-            padding: EdgeInsets.all(4),
-            decoration: BoxDecoration(
-              color: _isDarkMode ? Colors.black45 : Colors.white,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: Image.network(
-                    outfit["imageUrl"] ?? "",
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) =>
-                        Icon(Icons.broken_image, size: 50, color: Colors.grey),
-                  ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  outfit["title"] ?? "Unknown",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                ),
-                SizedBox(height: 4),
-                Row(
-                  children: [
-                    Icon(Icons.cloud, color: Colors.blue),
-                    SizedBox(width: 2),
-                    Text("${_temperature.toStringAsFixed(0)}°C",
-                        style: TextStyle(fontSize: 14)),
-                  ],
-                ),
-              ],
-            ),
-          );
-        },
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: BouncingScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 0.55,
       ),
+      itemCount: outfits.length,
+      itemBuilder: (context, index) {
+        final outfit = outfits[index];
+        return Container(
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+          padding: EdgeInsets.all(4),
+          decoration: BoxDecoration(
+            color: _isDarkMode ? Colors.black45 : Colors.white,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.network(
+                  outfit["imageUrl"] ?? "",
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) =>
+                      Icon(Icons.broken_image, size: 50, color: Colors.grey),
+                ),
+              ),
+              SizedBox(height: 8),
+              Text(
+                outfit["title"] ?? "Unknown",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              SizedBox(height: 4),
+              Row(
+                children: [
+                  Icon(Icons.cloud, color: Colors.blue),
+                  SizedBox(width: 2),
+                  Text("${_temperature.toStringAsFixed(0)}°C",
+                      style: TextStyle(fontSize: 14)),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
