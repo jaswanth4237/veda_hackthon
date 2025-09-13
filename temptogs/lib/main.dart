@@ -6,7 +6,7 @@ import 'package:device_preview/device_preview.dart';
 
 Future<void> main() async {
   await dotenv.load(fileName: ".env");
-  runApp( DevicePreview(builder: (_)=>MyWeatherDressApp()));
+  runApp(DevicePreview(builder: (_) => MyWeatherDressApp()));
 }
 
 class MyWeatherDressApp extends StatefulWidget {
@@ -64,50 +64,59 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
     }
   }
 
+  // Outfit suggestions based on gender & temperature
   List<Map<String, String>> getOutfitSuggestions() {
     if (_gender == "male") {
       if (_temperature >= 30) {
         return [
           {
-            "title": "Light Tee & Shorts (Male)",
-            "imageUrl": "https://example.com/male_hot_tee_shorts.jpg",
+            "title": "Casual Linen Shirt & Shorts",
+            "imageUrl":
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmmevJGJxCKMi1NAhDTkmxW-kNy20WoR7lMQ&s",
           },
           {
-            "title": "Sporty Tank Top",
-            "imageUrl": "https://example.com/male_tank_top.jpg",
+            "title": "Sleeveless Tank & Sunglasses",
+            "imageUrl":
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCXUgJKR_dms1FyhgyRXpTcx__lwIzbjmNWg&s",
           },
         ];
       } else if (_temperature >= 20) {
         return [
           {
-            "title": "Polo Shirt & Chinos",
-            "imageUrl": "https://example.com/male_polo_chinos.jpg",
+            "title": "Denim Jacket + T-Shirt",
+            "imageUrl":
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjXwycBVuJ58oD7BbxAoPidOYUkzgN2iv_qQ&s",
           },
           {
-            "title": "Long Sleeve + Light Jacket",
-            "imageUrl": "https://example.com/male_long_sleeve.jpg",
+            "title": "Casual Hoodie & Jeans",
+            "imageUrl":
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfayDO7U4W36dIXDMU-3w79fkmN1Ao7U_XXw&s",
           },
         ];
       } else if (_temperature >= 10) {
         return [
           {
-            "title": "Sweater + Jacket",
-            "imageUrl": "https://example.com/male_sweater_jacket.jpg",
+            "title": "Wool Sweater & Beanie",
+            "imageUrl":
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1AdZUgIZKQ_mnpM4pgZiSWb7g-yJ_94XT8Q&s",
           },
           {
-            "title": "Beanie Hat & Scarf",
-            "imageUrl": "https://example.com/male_beanie_scarf.jpg",
+            "title": "Layered Hoodie + Jacket",
+            "imageUrl":
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSSkr5T41xPCfjYk45GeLi4diekasHaRdkG3w&s",
           },
         ];
       } else {
         return [
           {
-            "title": "Heavy Coat & Gloves",
-            "imageUrl": "https://example.com/male_heavy_coat.jpg",
+            "title": "Puffer Jacket & Gloves",
+            "imageUrl":
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6wOrhU2i1-JU6WRv4P0dAjElF_lIdLSqjoQ&s",
           },
           {
-            "title": "Thermal Layers",
-            "imageUrl": "https://example.com/male_thermal_layers.jpg",
+            "title": "Heavy Coat + Scarf",
+            "imageUrl":
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzyZeGOoGqtvhjL5Sk7zSTNbnp_iuv3OaUPA&s",
           },
         ];
       }
@@ -115,45 +124,53 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
       if (_temperature >= 30) {
         return [
           {
-            "title": "Sleeveless Dress or Skirt",
-            "imageUrl": "https://example.com/female_hot_dress.jpg",
+            "title": "Summer Dress & Sunglasses",
+            "imageUrl":
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1aD8BMhSZTbebEzwo58CU0ZZAkDZ6YAdZbw&s",
           },
           {
-            "title": "Crop Top & Shorts",
-            "imageUrl": "https://example.com/female_crop_shorts.jpg",
+            "title": "Tank Top + Skirt",
+            "imageUrl":
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkZFaxmq7yRGAdBeLv8rfMFrplcHpcDviWYA&s",
           },
         ];
       } else if (_temperature >= 20) {
         return [
           {
-            "title": "Blouse + Jeans / Skirt",
-            "imageUrl": "https://example.com/female_blouse_jeans.jpg",
+            "title": "Light Cardigan + Jeans",
+            "imageUrl":
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQksRhCM_S2OfTag770nbXL5BtuxSvP0CgPlQ&s",
           },
           {
-            "title": "Long Sleeve Dress",
-            "imageUrl": "https://example.com/female_long_dress.jpg",
+            "title": "Long Sleeve Blouse + Skirt",
+            "imageUrl":
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF3w6XlgUJrXCdy_DkDb0_UKauxTlNvctn0g&s",
           },
         ];
       } else if (_temperature >= 10) {
         return [
           {
-            "title": "Cardigan + Scarf",
-            "imageUrl": "https://example.com/female_cardigan_scarf.jpg",
+            "title": "Wool Coat + Scarf",
+            "imageUrl":
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDjjb4NOx5hlGCw1kHczKmkWTjlIfBzX0YRg&s",
           },
           {
-            "title": "Knit Sweater + Jacket",
-            "imageUrl": "https://example.com/female_knit_jacket.jpg",
+            "title": "Knit Sweater & Jeans",
+            "imageUrl":
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxboon0ln3mTS85YL9UOB3nMj-JFYuYCb-Tw&s",
           },
         ];
       } else {
         return [
           {
-            "title": "Warm Coat + Boots",
-            "imageUrl": "https://example.com/female_heavy_coat_boots.jpg",
+            "title": "Puffer Jacket & Boots",
+            "imageUrl":
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4vXjIY6LOVj3gLzy3m6ticzBYACERk386tQ&s",
           },
           {
-            "title": "Layered Thermal Outfit",
-            "imageUrl": "https://example.com/female_thermal_outfit.jpg",
+            "title": "Layered Thermal Wear",
+            "imageUrl":
+                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaLHV2xOkl2x3cwzsNN6U2VJ3TM4fwULgygA&s",
           },
         ];
       }
@@ -163,12 +180,13 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Weather Dress Suggestion',
       themeMode: _isDarkMode ? ThemeMode.dark : ThemeMode.light,
       theme: ThemeData(
         brightness: Brightness.light,
         primarySwatch: Colors.blue,
-        scaffoldBackgroundColor: Colors.grey[100],
+        scaffoldBackgroundColor: Colors.white,
       ),
       darkTheme: ThemeData(
         brightness: Brightness.dark,
@@ -177,12 +195,37 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("Weather & Outfit"),
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 12),
+            child: Container(
+              height: 80,
+              width: 100,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.blue, width: 1),
+                borderRadius: BorderRadius.circular(50),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: Image.asset("assets/temptogs_logo.png", fit: BoxFit.cover),
+              ),
+            ),
+          ),
+          title: Padding(
+            padding: const EdgeInsets.only(left: 4),
+            child: Text(
+              "TempTogs",
+              style: TextStyle(
+                  color: Colors.blue, fontWeight: FontWeight.bold),
+            ),
+          ),
           actions: [
-            Icon(_isDarkMode ? Icons.dark_mode : Icons.light_mode),
-            Switch(
-              value: _isDarkMode,
-              onChanged: (val) => setState(() => _isDarkMode = val),
+            IconButton(
+              icon: Icon(_isDarkMode ? Icons.dark_mode : Icons.light_mode),
+              onPressed: () {
+                setState(() {
+                  _isDarkMode = !_isDarkMode;
+                });
+              },
             ),
           ],
         ),
@@ -194,7 +237,7 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
                   const SizedBox(height: 20),
                   _buildGenderToggle(),
                   const SizedBox(height: 20),
-                  _buildOutfitSection(),
+                  Expanded(child: _buildOutfitSection()),
                 ],
               ),
       ),
@@ -204,7 +247,7 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
   Widget _buildWeatherHeader() {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.only(top: kToolbarHeight + 20, bottom: 30),
+      padding: EdgeInsets.only(top: 80, bottom: 30),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: _isDarkMode
@@ -263,7 +306,11 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
   }
 
   Widget _genderButton(
-      String label, String gender, Color lightColor, Color darkColor) {
+    String label,
+    String gender,
+    Color lightColor,
+    Color darkColor,
+  ) {
     final isSelected = _gender == gender;
     return Expanded(
       child: GestureDetector(
@@ -296,26 +343,56 @@ class _MyWeatherDressAppState extends State<MyWeatherDressApp> {
     );
   }
 
+  // Outfits Grid
   Widget _buildOutfitSection() {
     final outfits = getOutfitSuggestions();
-    return Expanded(
-      child: ListView.builder(
-        itemCount: outfits.length,
-        itemBuilder: (context, index) {
-          final outfit = outfits[index];
-          return Card(
-            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            elevation: 5,
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-            child: ListTile(
-              contentPadding: const EdgeInsets.all(16),
-              title: Text(outfit["title"]!),
-              leading: Image.network(outfit["imageUrl"]!),
-            ),
-          );
-        },
+    return GridView.builder(
+      shrinkWrap: true,
+      physics: BouncingScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 0.55,
       ),
+      itemCount: outfits.length,
+      itemBuilder: (context, index) {
+        final outfit = outfits[index];
+        return Container(
+          margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+          padding: EdgeInsets.all(4),
+          decoration: BoxDecoration(
+            color: _isDarkMode ? Colors.black45 : Colors.white,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.network(
+                  outfit["imageUrl"] ?? "",
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) =>
+                      Icon(Icons.broken_image, size: 50, color: Colors.grey),
+                ),
+              ),
+              SizedBox(height: 8),
+              Text(
+                outfit["title"] ?? "Unknown",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+              ),
+              SizedBox(height: 4),
+              Row(
+                children: [
+                  Icon(Icons.cloud, color: Colors.blue),
+                  SizedBox(width: 2),
+                  Text("${_temperature.toStringAsFixed(0)}°C",
+                      style: TextStyle(fontSize: 14)),
+                ],
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }
