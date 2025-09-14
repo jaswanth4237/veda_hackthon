@@ -7,12 +7,7 @@ It helps users quickly decide what to wear, ensuring comfort and style according
 
 ## 📌 Submission Details
 - **Round 1 Duration**: 06.09.2025 to 13.09.2025 (Midnight)  
-- **Team / Registration Number**: YOUR_REGISTRATION_NUMBER  
-
-This folder includes:  
-- ✅ A **Notepad file** with links (YouTube demo & GitHub repo).  
-- ✅ A **README.md file** (this file) with setup instructions & project highlights.  
-- ✅ A **ZIP/RAR file** containing the full source code and dependencies.  
+- **Team / Registration Number**: VD25-246989  
 
 ---
 
@@ -45,9 +40,14 @@ This folder includes:
 ---
 
 ## 🛠️ Installation & Setup
-1. **Clone the Repository**  
+1. **Install the Flutter SDK & Android Studio**
+2. **Clone the Repository**  
    ```bash
-   git clone YOUR_GITHUB_LINK
+   git clone  https://github.com/jaswanth4237/veda_hackthon
+   
+   ```
+3. **Runnning App**
+   ```bash
    cd temptogs
    flutter pub get
    flutter run
